@@ -1,0 +1,39 @@
+/* Resetting default margins and padding */
+body, h1, main {
+    margin: 0;
+    padding: 0;
+}
+
+/* Setting background color for the body */
+body {
+    background-color: #383838; /* Gray background color */
+}
+
+/* Basic styling for the header */
+header {
+    background-color: #31b41a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Styling for the main content */
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Styling for the login link */
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #396cda;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #3d8b46;
+}
