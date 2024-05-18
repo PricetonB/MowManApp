@@ -1,11 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Function to make API request
-    function makeAPIRequest() {
+    // Function to make API request and update HTML
+    function makeAPIRequestAndUpdateHTML() {
         // Example API endpoint
-        const apiUrl = 'https://api.example.com/data';
+        const apiUrl = 'http://localhost:3000/userTest';
 
         // Make API request using Fetch API
-        fetch(apiUrl)
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -14,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 console.log('API Response:', data);
-                // Process the received data
+                // Update the HTML with the received data
+                updateHTMLWithData(data);
             })
             .catch(error => {
                 console.error('There was a problem with the API request:', error);
@@ -22,6 +28,15 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    // Call the function to make the API request
-    makeAPIRequest();
+    // Function to update HTML with the received data
+    function updateHTMLWithData(data) {
+        // Get the <h2> element where you want to display the data
+        const userInfoHeading = document.querySelector('#user-info h2');
+
+        // Update the content of the <h2> element with the received data
+        userInfoHeading.textContent = `User Information: ${data.profile_id}`;
+    }
+
+    // Call the function to make the API request and update HTML
+    makeAPIRequestAndUpdateHTML();
 });
