@@ -16,27 +16,28 @@ mongoose.connect(
 
 
 
-// Define the schemas
+// Define the user schema
 const userSchema = new mongoose.Schema({
   google_id: { type: String, unique: true },
-  profile_id: mongoose.Schema.Types.ObjectId,
+  profile_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' },
   created_at: { type: Date, default: Date.now },
 });
 
+// Define the profile schema
 const profileSchema = new mongoose.Schema({
-  user_id: mongoose.Schema.Types.ObjectId, // profile id in the user model
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Reference to the user model
   name: String,
   email: String,
-  customers: [mongoose.Schema.Types.ObjectId],
+  customers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Customer' }], // Reference to the customer model
 });
 
+// Define the customer schema
 const customerSchema = new mongoose.Schema({
   name: String,
   email: String,
   phone: String,
-  associated_profile_id: mongoose.Schema.Types.ObjectId,
+  associated_profile_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }, // Reference to the profile model
 });
-
 
 
 // Create the models

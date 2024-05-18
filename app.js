@@ -7,6 +7,8 @@ const auth = require('./auth');
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/userHub');
+const customersRoutes = require('./routes/customers');
+const addCustomerRoutes = require('./routes/addCustomer');
 const { User, Profile, Customer } = require('./database');
 require('dotenv').config();
 
@@ -27,6 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRoutes);
 app.use('/', authRoutes);
 app.use('/', userRoutes);
+app.use('/', customersRoutes);
+app.use('/', addCustomerRoutes);
 
 // Start the server
 app.listen(3000, () => {
