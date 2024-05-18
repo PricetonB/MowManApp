@@ -14,10 +14,6 @@ const SessionSecret = 'your-session-secret';
 const app = express();
 
 
-
-
-
-
 //--------------------------------
 //MISC FUNCTIONS
 
@@ -66,17 +62,15 @@ app.get('/google/callback', passport.authenticate('google', {
     successRedirect: '/userHub' 
 }));
 
+
+
+
 //user homepage redirected by google callback
 app.get('/userHub', isLoggedIn, (req, res) => {
-    const displayName = req.user.displayName || 'User'; // Fallback to 'User' if displayName is not available
-    const email = req.user.emails[0].value || 'N/A'; // Fallback to 'N/A' if email is not available
-    const googleId = req.user.id || 'N/A'; // Fallback to 'N/A' if id is not available
 
     //const name = req.user.name || 'N/A'; // Fallback to 'N/A' if name is not available
     res.send(`    
-    <h>Welcome to the profile page ${displayName}</h1>
-    <h>Your email is ${email}</h1> 
-    <h>your googleID is ${googleId}</h1>
+    <h>Welcome to the profile page</h1>
     <a href="/logout">Logout</a>`);
 });
 
@@ -88,54 +82,6 @@ app.post('/user', (req, res) => {
 });
 
 
-/*
-//api to authenticate and add new user to database
-// Handle Google OAuth callback
-app.get('/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/' }),
-    function(req, res) {
-        // Successful authentication, redirect to userHub or perform other actions
-        
-        // Extract user profile information from req.user
-        const { id, displayName, emails, } = req.user;
-        const profile_id = mongoose.Types.ObjectId(); // Generate a new ObjectId for the profile
-
-        // Check if the user already exists in the database based on their Google ID
-        User.findOne({ google_id: id })
-            .then(user => {
-                if (user) {
-                    // User already exists, do nothing
-                    res.redirect('/userHub');
-                } else {
-
-                    // User doesn't exist, create a new user and save to the database
-                    const newUser = new User({
-                        google_id: id,
-                        profile_id: profile_id
-                    });
-
-                    // Create a new profile for the user
-                    const newProfile = new Profile({
-                        user_id: profile_id,
-                        name: displayName,
-                        email: emails[0].value // Assuming the first email is used
-                    });
-
-                    // Save both user and profile to the database
-                    return Promise.all([newUser.save(), newProfile.save()]);
-                }
-            })
-            .then(newUser => {
-                // Redirect to userHub after saving the new user
-                res.redirect('/userHub');
-            })
-            .catch(error => {
-                console.error('Error creating user:', error);
-                res.redirect('/'); // Redirect to home page on error
-            });
-    }
-);
-*/
 
 //api to logout user and return to home page
 app.get('/logout', (req, res, next) => {
@@ -158,6 +104,7 @@ app.get('/logout', (req, res, next) => {
     });
 });
 
+//----------------------------------------------------------
 
 // Start the server
 app.listen(3000, () => {
