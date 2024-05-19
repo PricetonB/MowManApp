@@ -83,7 +83,7 @@ ol {
 
 /* Styling for the return button */
 #return-btn {
-    background-color: #3d8b46; /* Darker green on hover */
+    background-color: #31b41a; /* Green background color */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -97,4 +97,22 @@ ol {
 
 #return-btn:hover {
     background-color: #3d8b46; /* Darker blue on hover */
+}
+
+/*id google-login-btn*/
+#google-login-btn {
+    background-color: #929292; /* Green background color */
+    color: #fff;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 8px;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#google-login-btn:hover {
+    background-color: #4c4c4c; /* Darker blue on hover */
 }
