@@ -9,7 +9,8 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/userHub');
 const customersRoutes = require('./routes/customers');
 const addCustomerRoutes = require('./routes/addCustomer');
-const { User, Profile, Customer } = require('./database');
+const appointmentsRoutes = require('./routes/appointments');
+const { User, Profile, Customer, Appointment } = require('./database');
 require('dotenv').config();
 
 // VARIABLES
@@ -31,6 +32,7 @@ app.use('/', authRoutes);
 app.use('/', userRoutes);
 app.use('/', customersRoutes);
 app.use('/', addCustomerRoutes);
+app.use('/', appointmentsRoutes);
 
 // Start the server
 app.listen(3000, () => {

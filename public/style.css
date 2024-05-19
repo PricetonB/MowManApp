@@ -6,12 +6,13 @@ body, h1, main {
 
 /* Setting background color for the body */
 body {
-    background-color: #383838; /* Gray background color */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light gray background color */
 }
 
 /* Basic styling for the header */
 header {
-    background-color: #31b41a;
+    background-color: #31b41a; /* Green background color */
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -21,19 +22,79 @@ header {
 main {
     padding: 20px;
     text-align: center;
-    color: #fff;
+    color: #383838; /* Dark gray text color */
 }
 
-/* Styling for the login link */
-a {
-    display: inline-block;
+/* Remove bullets from unordered list */
+ul {
+    list-style-type: none;
+}
+
+/* Remove numbers from ordered list */
+ol {
+    list-style-type: none;
+}
+
+/* Styling for the appointment list */
+#appointment-list {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Styling for the appointment list title */
+#appointment-list h2 {
+    margin-bottom: 20px;
+    color: #31b41a; /* Green text color */
+}
+
+/* Styling for the appointment list items */
+#appointments {
+    list-style-type: none;
+    padding: 0;
+}
+
+#appointments li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc; /* Light gray border */
+    padding-bottom: 10px;
+}
+
+/* Styling for the add appointment button */
+#add-appointment-btn {
+    background-color: #31b41a; /* Green background color */
+    color: #fff;
+    border: none;
     padding: 10px 20px;
-    color: #396cda;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
     text-decoration: none;
-    border-radius: 7px;
+    margin-right: 10px;
     transition: background-color 0.3s ease;
 }
 
-a:hover {
-    background-color: #3d8b46;
+#add-appointment-btn:hover {
+    background-color: #3d8b46; /* Darker green on hover */
+}
+
+/* Styling for the return button */
+#return-btn {
+    background-color: #3d8b46; /* Darker green on hover */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#return-btn:hover {
+    background-color: #3d8b46; /* Darker blue on hover */
 }

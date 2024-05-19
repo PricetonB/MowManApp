@@ -29,6 +29,7 @@ const profileSchema = new mongoose.Schema({
   name: String,
   email: String,
   customers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Customer' }], // Reference to the customer model
+  appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }], // Reference to the appointment model
 });
 
 // Define the customer schema
@@ -40,10 +41,24 @@ const customerSchema = new mongoose.Schema({
 });
 
 
+// appointment schema
+const appointmentSchema = new mongoose.Schema({
+  associated_customer_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer' }, 
+  associated_profile_id: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }, // Reference to the user model
+  name: String,
+  email: String,
+  phone: String,
+  date: Date,
+  time: String,
+  cost: String,
+  notes: String
+});
+
 // Create the models
 const User = mongoose.model("User", userSchema);
 const Profile = mongoose.model("Profile", profileSchema);
 const Customer = mongoose.model("Customer", customerSchema);
+const Appointment = mongoose.model("Appointment", appointmentSchema);
 
 // Export the models
-module.exports = { User, Profile, Customer };
+module.exports = { User, Profile, Customer, Appointment};

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #31b41a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #appointment-form {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #31b41a;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script src="scheduleAppointment.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Add a New Appointment</h1>
+    </header>
+    <main>
+        <section id="appointment-form">
+            <label for="customer-select">Select Customer:</label>
+            <select id="customer-select" size="4"></select>
+            <label for="appointment-name">Name:</label>
+            <input type="text" id="appointment-name" required>
+            <label for="appointment-email">Email:</label>
+            <input type="email" id="appointment-email" required>
+            <label for="appointment-phone">Phone:</label>
+            <input type="text" id="appointment-phone" required>
+            <label for="appointment-date">Date:</label>
+            <input type="date" id="appointment-date" required>
+            <label for="appointment-time">Time:</label>
+            <input type="time" id="appointment-time" required>
+            <label for="appointment-cost">Cost:</label>
+            <input type="text" id="appointment-cost" required>
+            <label for="appointment-notes">Notes:</label>
+            <textarea id="appointment-notes"></textarea>
+            <button id="add-appointment-btn">Add Appointment</button>
+            <a href="/appointmentsHTML">
+                <button id="return-btn">Return to Appointments</button>
+            </a>
+        </section>
+    </main>
+</body>
+</html>
