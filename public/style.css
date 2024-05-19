@@ -35,6 +35,52 @@ ol {
     list-style-type: none;
 }
 
+button {
+    background-color: #31b41a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 8px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#lawn-mower-image {
+    display: block; /* Ensures the image is treated as a block element */
+    margin: 20px 10% auto; /* Centers the image horizontally and adds space above */
+    width: 70%; /* Makes the image 80% of the screen width */
+    height: auto; /* Maintains the aspect ratio of the image */
+}
+
+#create-customer-form {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 /* Styling for the appointment list */
 #appointment-list {
     background-color: #fff;
@@ -63,6 +109,10 @@ ol {
     padding-bottom: 10px;
 }
 
+
+
+
+
 /* Styling for the add appointment button */
 #add-appointment-btn {
     background-color: #31b41a; /* Green background color */
@@ -80,6 +130,37 @@ ol {
 #add-appointment-btn:hover {
     background-color: #3d8b46; /* Darker green on hover */
 }
+
+
+/* Styling for the appointment list */
+#customer-list {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Styling for the appointment list title */
+#customer-list h2 {
+    margin-bottom: 20px;
+    color: #31b41a; /* Green text color */
+}
+
+/* Styling for the appointment list items */
+#customers {
+    list-style-type: none;
+    padding: 0;
+}
+
+#customers li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc; /* Light gray border */
+    padding-bottom: 10px;
+}
+
+
 
 /* Styling for the return button */
 #return-btn {
@@ -99,17 +180,21 @@ ol {
     background-color: #3d8b46; /* Darker blue on hover */
 }
 
+
+
+
 /*id google-login-btn*/
 #google-login-btn {
     background-color: #929292; /* Green background color */
     color: #fff;
     border: none;
-    padding: 20px 20px;
+    padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 8px;
     text-decoration: none;
     margin-right: 10px;
+    margin-bottom: -10px;
     transition: background-color 0.3s ease;
 }
 
