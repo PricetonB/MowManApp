@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const { User, Profile, Customer } = require('../database');
 
 // Middleware to check if the user is logged in
 function isLoggedIn(req, res, next) {
@@ -33,9 +34,17 @@ router.post('/user', isLoggedIn, (req, res) => {
 
 // Test GET request
 router.get('/userTest', isLoggedIn, (req, res) => {
-    const responseData = req.user;
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(responseData));
+    Profile.findOne({ user_id: req.user.profile_id })
+        .then(profile => {
+            const responseData = profile;
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(responseData));
+
+        })
+        .catch(error => {
+            console.error('Error fetching profile:', error);
+            res.sendStatus(500);
+        });
 });
 
 

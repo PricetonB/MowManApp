@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const userInfoHeading = document.querySelector('#user-info h2');
 
         // Update the content of the <h2> element with the received data
-        userInfoHeading.textContent = `User Information: ${data.profile_id}`;
+        userInfoHeading.textContent = `Hello ${data.name}`;
     }
 
     // Call the function to make the API request and update HTML

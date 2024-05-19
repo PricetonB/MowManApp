@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.customers && data.customers.length > 0) {
                 data.customers.forEach(customer => {
                     const listItem = document.createElement('li');
-                    listItem.textContent = `${customer.name} - ${customer.email} - ${customer.phone}`;
+                    listItem.textContent = `Name: ${customer.name} ---------- Email: ${customer.email}   ----------   Phone: ${customer.phone}`;
                     customerList.appendChild(listItem);
                 });
             } else {
