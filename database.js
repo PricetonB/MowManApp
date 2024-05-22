@@ -54,11 +54,18 @@ const appointmentSchema = new mongoose.Schema({
   notes: String
 });
 
+// Define the settings schema
+const settingSchema = new mongoose.Schema({
+  associated_profile_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Profile' }, // Reference to the profile model
+  sendCustomerEmailNotifications: { type: Boolean, default: true }
+});
+
 // Create the models
 const User = mongoose.model("User", userSchema);
 const Profile = mongoose.model("Profile", profileSchema);
 const Customer = mongoose.model("Customer", customerSchema);
 const Appointment = mongoose.model("Appointment", appointmentSchema);
+const Setting = mongoose.model("Setting", settingSchema);
 
 // Export the models
-module.exports = { User, Profile, Customer, Appointment};
+module.exports = { User, Profile, Customer, Appointment, Setting};

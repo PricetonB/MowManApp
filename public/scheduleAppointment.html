@@ -70,6 +70,9 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: auto;    
+            
         }
 
         button:hover {
@@ -87,11 +90,14 @@
             <label for="customer-select">Select Customer:</label>
             <select id="customer-select" size="4"></select>
             <label for="appointment-name">Name:</label>
-            <input type="text" id="appointment-name" required>
+            <input type="text" id="appointment-name" readonly required>
             <label for="appointment-email">Email:</label>
-            <input type="email" id="appointment-email" required>
+            <input type="email" id="appointment-email" readonly required>
             <label for="appointment-phone">Phone:</label>
-            <input type="text" id="appointment-phone" required>
+            <input type="text" id="appointment-phone" readonly required>
+
+            <hr style="border: 1px solid green; width: 100%; margin: 20px 0;">
+            
             <label for="appointment-date">Date:</label>
             <input type="date" id="appointment-date" required>
             <label for="appointment-time">Time:</label>
@@ -102,7 +108,7 @@
             <textarea id="appointment-notes"></textarea>
             <button id="add-appointment-btn">Add Appointment</button>
             <a href="/appointmentsHTML">
-                <button id="return-btn">Return to Appointments</button>
+                <button id="return-btn">Cancel</button>
             </a>
         </section>
     </main>

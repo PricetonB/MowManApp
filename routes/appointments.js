@@ -1,4 +1,5 @@
 const { User, Profile, Customer, Appointment } = require("../database");
+const appointmentController = require('../controllers/appointmentController');
 const router = require("./userHub");
 const path = require("path");
 
@@ -11,6 +12,10 @@ function isLoggedIn(req, res, next) {
         res.sendStatus(401);
     }
 }
+
+
+// Route to complete an appointment
+router.post('/appointmentComplete', appointmentController.finishAppointment);
 
 
 // POST route to create a appointmetn and add to user's list of appointments

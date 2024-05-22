@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             customersData = data.customers || [];
             //log data.customers to the console
-            console.log(`data.customers in schedule appointmetn: ${data.customers}`)
+            console.log(`data.customers in schedule appointment: ${data.customers}`)
             customerSelect.innerHTML = ''; // Clear any existing options
 
             if (customersData.length > 0) {
                 customersData.forEach(customer => {
                     const option = document.createElement('option');
                     option.value = customer._id; // Use customer ID as value
-                    option.textContent = `${customer.name} (${customer.email})`;
+                    option.textContent = `${customer.name}`;
                     customerSelect.appendChild(option);
                 });
 
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.message === 'Appointment added successfully') {
                 alert('Appointment added successfully');
                 // Redirect to /appointments after successful addition
-                window.location.href = '/appointments';
+                window.location.href = '/appointmentsHTML';
             } else {
                 throw new Error(data.message);
             }

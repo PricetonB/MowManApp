@@ -1,0 +1,445 @@
+
+
+twilio for text messages
+and implement smtp for email
+
+
+make schedule button on userhub
+it brings up list of appointments with all scheduled appointments
+it has add button to add appointment. this api will later be implemented were customers can schedule estimate
+
+use schedule video to make reoccuring appointments.
+every week the schedule will add appointment for next week
+also use video to log message 5 minutes before meeting
+this will be later used to send push notifications to client
+the day before scheduled appointments
+
+
+------------------------------------------------------
+appointmentRoutes.js------
+
+import appointmentController
+route.post(/appointmentComplete, appointmentController.finishAppointment)
+
+
+
+
+---------------------------------------------------
+appointmentController.js------
+
+import appointmentService
+import notificationService
+module.exports = {
+
+    finishAppointment: async(req,res,next)
+    const {data, data, data} = request.body
+
+    try 
+        appointmentService.setAppointmentInactive(appointmentID)
+        notificationService.assignmentCompleted(appointmentID,customerID,profileID)
+
+        response.status(200)
+    catch
+        handleError()
+
+}
+
+
+-------------------------------------
+appointmentService.js-----
+
+import database model { profile, appointments, customers}
+
+module.exports = {
+
+setAppointmentInactive: async(appointmentid)
+set appointment to inactive in database
+
+}
+------------------------------------
+notificationService.js-
+
+import oneSignal
+import database model {profile, appointment, customer}    
+
+module. exports = {
+if profile.settings.emailnotifications(custID,assID,profileID) == true:
+    data = {message: "message", subject: "subject", email: customer.findOne(customerid)}
+    onesignal.createNotification(data)
+}
+
+==================================================================
+
+
+my-app/
+├── controllers/
+│   ├── authController.js
+│   ├── notificationController.js
+│   ├── paymentController.js
+│   ├── settingsController.js
+│   └── appointmentController.js
+├── models/
+│   ├── User.js
+│   ├── Notification.js
+│   ├── Payment.js
+│   ├── Setting.js
+│   └── Appointment.js
+├── routes/
+│   ├── authRoutes.js
+│   ├── notificationRoutes.js
+│   ├── paymentRoutes.js
+│   ├── settingsRoutes.js
+│   └── appointmentRoutes.js
+├── services/
+│   ├── authService.js
+│   ├── notificationService.js
+│   ├── paymentService.js
+│   ├── settingsService.js
+│   └── appointmentService.js
+├── events/
+│   ├── eventBus.js
+│   ├── notificationEvents.js
+│   └── appointmentEvents.js
+├── middlewares/
+│   ├── authMiddleware.js
+│   ├── errorHandler.js
+│   └── validate.js
+├── config/
+│   ├── db.js
+│   ├── passport.js
+│   ├── paymentGateway.js
+│   └── pushNotifications.js
+├── utils/
+│   ├── logger.js
+│   └── validator.js
+├── .env
+├── app.js
+├── package.json
+└── README.md
+
+
+
+
+
+Controllers
+Controllers are responsible for handling HTTP requests and responses. They act as the intermediaries
+between the client (e.g., web browser, mobile app) and the business logic of your application.
+
+Request Handling: Controllers receive HTTP requests, extract necessary data from the request, and send HTTP responses.
+
+Validation: They can perform initial validation and parsing of request data.
+Routing: Controllers are often tied directly to routes, mapping HTTP endpoints to specific functions.
+Error Handling: They can handle errors and send appropriate HTTP response codes.
+
+
+
+
+Services
+Services contain the business logic of your application. They encapsulate and centralize operations 
+that can be reused across different controllers or other parts of your application.
+
+Business Logic: Services implement the core functionality and business rules of your application.
+
+Reusability: By placing business logic in services, you can reuse the same logic across multiple controllers or other services.
+
+testing: Services can be more easily tested in isolation since they don’t depend directly on HTTP request/response objects.
+Maintainability: Having a clear separation makes your code easier to maintain and extend.
+
+
+
+
+Advantages of Separation
+
+Single Responsibility Principle (SRP): Each module (controller and service) has a single responsibility.
+ Controllers handle HTTP aspects, while services handle business logic.
+
+Reusability: Services can be reused by multiple controllers or other services. This reduces code duplication
+ and makes your application more DRY (Don't Repeat Yourself).
+
+Testability: Services can be tested independently of the controllers, leading to more straightforward and more
+ reliable unit tests.
+
+Maintainability: A clear separation of concerns makes the codebase easier to understand, maintain, and extend.
+ Changes to business logic are confined to services, while changes to HTTP handling are confined to controllers.
+
+Scalability: As your application grows, having a well-structured separation helps in managing complexity.
+ You can add more services or controllers without them becoming unwieldy.
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+ Setup OneSignal
+Install OneSignal Node Client:
+
+
+npm install onesignal-node
+
+
+
+
+
+Initialize OneSignal Client:
+
+// config/onesignal.js
+const OneSignal = require('onesignal-node');
+
+const client = new OneSignal.Client({
+  userAuthKey: process.env.ONESIGNAL_USER_AUTH_KEY,
+  app: { appAuthKey: process.env.ONESIGNAL_APP_AUTH_KEY, appId: process.env.ONESIGNAL_APP_ID },
+});
+
+module.exports = client;
+
+
+
+
+
+
+Send Email Notification:
+
+// services/notificationService.js
+const client = require('../config/onesignal');
+
+module.exports = {
+  sendEmailNotification: async (email, subject, body) => {
+    const notification = {
+      headings: { en: subject },
+      contents: { en: body },
+      include_email_tokens: [email],
+    };
+
+    try {
+      const response = await client.createNotification(notification);
+      console.log('Email sent successfully:', response.body);
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  },
+};
+
+
+
+
+
+
+Send SMS Notification:
+
+// services/notificationService.js
+const client = require('../config/onesignal');
+
+module.exports = {
+  sendSmsNotification: async (phoneNumber, message) => {
+    const notification = {
+      contents: { en: message },
+      include_phone_numbers: [phoneNumber],
+    };
+
+    try {
+      const response = await client.createNotification(notification);
+      console.log('SMS sent successfully:', response.body);
+    } catch (error) {
+      console.error('Error sending SMS:', error);
+    }
+  },
+};
+Controller Examples
+javascript
+Copy code
+// controllers/notificationController.js
+const notificationService = require('../services/notificationService');
+
+exports.sendEmailNotification = async (req, res, next) => {
+  const { email, subject, body } = req.body;
+
+  try {
+    await notificationService.sendEmailNotification(email, subject, body);
+    res.status(200).json({ message: 'Email sent successfully' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.sendSmsNotification = async (req, res, next) => {
+  const { phoneNumber, message } = req.body;
+
+  try {
+    await notificationService.sendSmsNotification(phoneNumber, message);
+    res.status(200).json({ message: 'SMS sent successfully' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+
+
+
+Routes Setup
+
+// routes/notificationRoutes.js
+const express = require('express');
+const router = express.Router();
+const notificationController = require('../controllers/notificationController');
+
+// Route to send email notification via OneSignal
+router.post('/send-email', notificationController.sendEmailNotification);
+
+// Route to send SMS notification via OneSignal
+router.post('/send-sms', notificationController.sendSmsNotification);
+
+module.exports = router;
+
+
+
+
+NEW APPOINTMENT.JS IMPLEMENT SMS NOTIFICATION ALSO THIS REPLACES ABOVE FILE 
+const { User, Profile, Customer, Appointment } = require("../database");
+const router = require("./userHub");
+const path = require("path");
+const notificationController = require('../controllers/notificationController'); // Import the notification controller
+
+// Middleware to check if the user is logged in
+function isLoggedIn(req, res, next) {
+  if (req.user) {
+    return next();
+  } else {
+    res.sendStatus(401);
+  }
+}
+
+// POST route to mark an assignment as completed and send email notification if enabled
+router.post('/assignmentCompleted', isLoggedIn, async (req, res) => {
+  try {
+    const { userId, customerId, assignmentId } = req.body;
+
+    // Fetch the user's settings
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if email notifications are enabled
+    if (user.settings.emailNotifications) {
+      // Fetch customer details
+      const customer = await Customer.findById(customerId);
+      if (!customer) {
+        return res.status(404).json({ message: 'Customer not found' });
+      }
+
+      // Construct email subject and body
+      const subject = 'Assignment Completed';
+      const message = `Hello ${customer.name}, your assignment (${assignmentId}) has been completed.`;
+
+      // Create a mock request and response object for internal call
+      const reqMock = {
+        body: {
+          email: customer.email,
+          subject,
+          body: message,
+        }
+      };
+      const resMock = {
+        status: (statusCode) => ({
+          json: (responseBody) => console.log(`Mock response: ${statusCode}`, responseBody)
+        }),
+        json: (responseBody) => console.log('Mock response:', responseBody)
+      };
+
+      // Call the notification controller directly
+      await notificationController.sendEmailNotification(reqMock, resMock, (err) => {
+        if (err) {
+          throw err;
+        }
+      });
+
+      res.status(200).json({ message: 'Assignment completed and email notification sent successfully' });
+    } else {
+      res.status(200).json({ message: 'Assignment completed, but email notification not sent because email notifications are disabled' });
+    }
+  } catch (error) {
+    console.error('Error completing assignment:', error);
+    res.status(500).json({ message: 'Error completing assignment', error });
+  }
+});
+
+// Your other routes go here...
+
+module.exports = router;
+
+
+
+
+
+
+
+Main Application Setup
+
+// app.js
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const notificationRoutes = require('./routes/notificationRoutes');
+
+app.use(express.json());
+app.use('/notifications', notificationRoutes);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
+
+
+
+
+Environment Variables (.env)
+
+ONESIGNAL_USER_AUTH_KEY=your-onesignal-user-auth-key
+ONESIGNAL_APP_AUTH_KEY=your-onesignal-app-auth-key
+ONESIGNAL_APP_ID=your-onesignal-app-id
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+make html page for userhub
+userhub route will deliver html file
+when the html loads in the browser it will link to userhub.js in pulbic folder for clientside js
+userhub.js client side code will make api call to server to get user data 
+will have a logout button to hit logout route
+will have a customers button to route to userhub/customers
+make html for customers and make js client file to call server api
+that returns all customer data for the current res.user.id
+
+
+fix routing issues 
+make passport init create user,profile,and customers in database.
+update userhub route to serve html file
+finish js code for userhub that automatically makes call to 
+user data api and loads info into html file.
+do same for customer button. it loads html file and then js code loads data automatically for html (cusotmer data)
+customers will have their own id and when customer is clicked from table
+it will redirect to customer/<customerid>. server can use this id to get data from database
+here there will be a delete customer button
+on the /customer there will be an add customer button 
+
+maybe later customer has appointment data that specifies when there reocuring appointments should be
+like once a month or every 7 days or every other tuesday.
+this data can be used create appointments and add to calender. 
+customers can have active appointments. the appointment scheduler 
+will add active appointments if customer is on autoscheduler
+based on the customer appointment data.
