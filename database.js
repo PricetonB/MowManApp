@@ -51,7 +51,8 @@ const appointmentSchema = new mongoose.Schema({
   date: Date,
   time: String,
   cost: String,
-  notes: String
+  notes: String,
+  status: { type: Boolean, default: true }
 });
 
 // Define the settings schema

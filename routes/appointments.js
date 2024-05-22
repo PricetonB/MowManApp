@@ -35,6 +35,7 @@ router.post('/addAppointment', isLoggedIn, async (req, res) => {
             cost,
             notes,
             associated_profile_id: profileId,
+            status: true
         });
         
 

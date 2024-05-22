@@ -8,7 +8,7 @@ const finishAppointment = async (req, res, next) => {
     console.dir(req.body); // Log the request body in more detail
 
     try {
-        //await appointmentService.setAppointmentInactive(appointmentID);
+        await appointmentService.setAppointmentInactive(appointmentID);
         await emailService.sendEmailNotification(appointmentID);
         res.json({ success: true });
         console.log(`sending res status 200`);

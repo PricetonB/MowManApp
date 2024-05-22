@@ -109,7 +109,17 @@ body {
 }
 
 /* Styling for the appointment list */
-#appointment-list {
+#active-appointment-list {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Styling for the inactive appointment list */
+#inactive-appointment-list {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -119,24 +129,30 @@ body {
 }
 
 /* Styling for the appointment list title */
-#appointment-list h2 {
+#active-appointment-list h2 {
+    margin-bottom: 20px;
+    color: #31b41a; /* Green text color */
+}
+
+/* Styling for the appointment list title */
+#inactive-appointment-list h2 {
     margin-bottom: 20px;
     color: #31b41a; /* Green text color */
 }
 
 /* Styling for the appointment list items */
-#appointments {
+#active-appointments,
+#inactive-appointments {
     list-style-type: none;
     padding: 0;
 }
 
-#appointments li {
+#active-appointments li,
+#inactive-appointments li {
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc; /* Light gray border */
     padding-bottom: 10px;
 }
-
-
 
 
 
