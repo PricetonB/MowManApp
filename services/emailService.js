@@ -42,6 +42,7 @@ const sendEmailNotification = async (appointmentID) => {
             const profile = await Profile.findById(profileID);
 
             if (!customer) {
+                
                 throw new Error('Customer not found');
             }
 
@@ -57,6 +58,7 @@ const sendEmailNotification = async (appointmentID) => {
             await transporter.sendMail(mailOptions);
         }
     } catch (error) {
+        console.log(`appointmentID: ${appointmentID}`);
         console.error('Error sending email:', error);
     }
 };

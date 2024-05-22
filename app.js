@@ -10,7 +10,7 @@ const userRoutes = require('./routes/userHub');
 const customersRoutes = require('./routes/customers');
 const addCustomerRoutes = require('./routes/addCustomer');
 const appointmentsRoutes = require('./routes/appointments');
-const { User, Profile, Customer, Appointment } = require('./database');
+const { User, Profile, Customer, Appointment, Setting } = require('./database');
 require('dotenv').config();
 
 // VARIABLES
