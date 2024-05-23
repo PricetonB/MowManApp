@@ -15,7 +15,7 @@ const cron = require('./services/taskScheduler');
 require('dotenv').config();
 
 // VARIABLES
-const EXPRESS_SESSION_SECRET = process.dotenv.EXPRESS_SESSION_SECRET;
+const EXPRESS_SESSION_SECRET = process.env.EXPRESS_SESSION_SECRET;
 const app = express();
 
 // MIDDLEWARE
