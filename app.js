@@ -11,15 +11,16 @@ const customersRoutes = require('./routes/customers');
 const addCustomerRoutes = require('./routes/addCustomer');
 const appointmentsRoutes = require('./routes/appointments');
 const { User, Profile, Customer, Appointment, Setting } = require('./database');
+const cron = require('./services/taskScheduler');
 require('dotenv').config();
 
 // VARIABLES
-const SessionSecret = 'your-session-secret';
+const EXPRESS_SESSION_SECRET = process.dotenv.EXPRESS_SESSION_SECRET;
 const app = express();
 
 // MIDDLEWARE
 app.use(express.json());
-app.use(session({ secret: SessionSecret }));
+app.use(session({ secret: EXPRESS_SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 
