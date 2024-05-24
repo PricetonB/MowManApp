@@ -1,9 +1,28 @@
 
 
 
-AWS DNS CALLBACK: http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com/google/callback
-AWS DNS URL:  http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com
+AWS DNS CALLBACK: http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com:80/google/callback
+AWS DNS URL:  http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com:80
 
+pm2 start app.js --watch 
+pm2 stop
+pm2 status  
+pm2 restart app
+pm2 logs 
+
+
+
+
+steps to transfer
+--make sure everything is using correct port 
+1. add callback address for google oauth on website and update in code.
+2. whitelist ip address for mongo atlas
+3. update fetch requests url on client side 
+4. update port on app.js
+
+
+
+MAKE NGINX TO FORWARD HTTP REQUESTS TO PORT 3000 ON EXPRESS 
 
 
 twilio for text messages
@@ -15,7 +34,7 @@ it brings up list of appointments with all scheduled appointments
 it has add button to add appointment. this api will later be implemented were customers can schedule estimate
 
 use schedule video to make reoccuring appointments.
-every week the schedule will add appointment for next week
+every week  schedule will add appointment for next week
 also use video to log message 5 minutes before meeting
 this will be later used to send push notifications to client
 the day before scheduled appointments

@@ -1,48 +1,3 @@
-/*
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    function fetchAppointments() {
-        fetch('http://localhost:3000/appointmentsData', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            const appointmentList = document.getElementById('appointments');
-            appointmentList.innerHTML = ''; // Clear any existing content
-        
-            if (data.appointments && data.appointments.length > 0) {
-                data.appointments.forEach(appointment => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `Name: ${appointment.name} --- Date: ${appointment.date}  --- Time: ${appointment.time} --- Phone: ${appointment.phone}`;
-                    appointmentList.appendChild(listItem);
-                });
-            } else {
-                const noAppointmentsItem = document.createElement('li');
-                noAppointmentsItem.textContent = 'No appointments have been saved.';
-                appointmentList.appendChild(noAppointmentsItem);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error fetching appointments: ' + error.message);
-        });
-    }
-
-    // Fetch the appointments when the page is loaded
-    fetchAppointments();
-
-    // For SPA, listen to a custom event to fetch appointments when navigating to this section
-    document.addEventListener('navigateToAppointments', fetchAppointments);
-});
-
-
-
-*/
-
 
 
 
@@ -82,6 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     phoneDiv.textContent = `Phone: ${appointment.phone}`;
                     listItem.appendChild(phoneDiv);
 
+                    const notesDiv = document.createElement('div');
+                    notesDiv.textContent = `Notes: ${appointment.notes}`;
+                    listItem.appendChild(notesDiv);                 
+
                     const buttonDiv = document.createElement('div');
 
                     if (appointment.status) {
@@ -90,11 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         finishButton.setAttribute('onclick', 'finishAppointment(this)');
                         buttonDiv.appendChild(finishButton);
                     }
-
-                    const editButton = document.createElement('button');
-                    editButton.textContent = 'Details';
-                    editButton.setAttribute('onclick', 'editAppointment(this)');
-                    buttonDiv.appendChild(editButton);
 
                     const deleteButton = document.createElement('button');
                     deleteButton.textContent = 'Delete';
@@ -126,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Helper function to format the date
-        function formatDate(isoString) {
-            return isoString.split('T')[0];
+function formatDate(isoString) {
+    return isoString.split('T')[0];
         }
     
 
@@ -142,9 +96,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 window.finishAppointment = function(button) {
-    const listItem = button.closest('li'); // Find the closest ancestor <li> element
+    // Disable the button to prevent multiple clicks
+    button.disabled = true;
+    button.style.backgroundColor = 'grey';
+
+    // Find the closest ancestor <li> element and retrieve the appointment ID
+    const listItem = button.closest('li');
     const appointmentId = listItem.getAttribute('data-appointment-id');
     console.log(`appointmentId in client finished: ${appointmentId}`);
+
+    // Make the fetch request to mark the appointment as complete
     fetch('http://localhost:3000/appointmentComplete', {
         method: 'POST',
         headers: {
@@ -152,22 +113,64 @@ window.finishAppointment = function(button) {
         },
         body: JSON.stringify({ appointmentID: appointmentId })
     })
-        .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            // Remove the list item from the DOM
+            listItem.remove();
+            // Display success alert
+            alert('Appointment marked as completed. Customer has been notified based on your settings.');
+        } else {
+            // Handle error response from the server
+            console.error('Error marking appointment as finished:', data.error);
+            console.log(`appointmentId after error: ${appointmentId}`);
+            alert('Error marking appointment as finished: ' + data.error);
+        }
+    })
+    .catch(error => {
+        // Handle network or other errors
+        console.error('Error:', error);
+        alert('Error marking appointment as finished: ' + error.message);
+    });
+}
+
+
+window.deleteAppointment = function(button) {
+    button.disabled = true;
+    button.style.backgroundColor = 'grey';
+    const listItem = button.closest('li'); // Find the closest ancestor <li> element
+    const appointmentId = listItem.getAttribute('data-appointment-id');
+    console.log(`appointmentId in client for deletion: ${appointmentId}`);
+    fetch(`http://localhost:3000/appointment/${appointmentId}`, {
+        method: 'DELETE'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.success) {
                 listItem.remove(); // Remove the list item from the DOM
             } else {
-                console.error('Error marking appointment as finished console sucka:', data.error);
-                console.log(`appointmentId after error: ${appointmentId}`);
-                alert('Error marking appointment as finishedd: ' + data.error);
+                console.error('Error deleting appointment:', data.error);
+                alert('Error deleting appointment: ' + data.error);
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Error marking appointment as finisheddd: ' + error.message);
+            console.error('Error deleting appointment:', error);
+            alert('Error deleting appointment: ' + error.message);
         });
-    }
+}
 
+
+    
 
     //-------------------------------------------------------------
 
