@@ -16,9 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
         
             if (data.customers && data.customers.length > 0) {
                 data.customers.forEach(customer => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `Name: ${customer.name}_____ Email: ${customer.email} _____Phone: ${customer.phone}`;
-                    customerList.appendChild(listItem);
+                    const listItemName = document.createElement('li');
+                    listItemName.textContent = `Name: ${customer.name}`;
+                    customerList.appendChild(listItemName);
+            
+                    const listItemEmail = document.createElement('li');
+                    listItemEmail.textContent = `Email: ${customer.email}`;
+                    customerList.appendChild(listItemEmail);
+            
+                    const listItemPhone = document.createElement('li');
+                    listItemPhone.textContent = `Phone: ${customer.phone}`;
+                    customerList.appendChild(listItemPhone);
+            
+                    // Create and append the separator
+                    const separator = document.createElement('hr');
+                    separator.style.borderTop = '5px solid #31b41a'; // Thick line with color #31b41a
+                    customerList.appendChild(separator);
                 });
             } else {
                 const noCustomersItem = document.createElement('li');
