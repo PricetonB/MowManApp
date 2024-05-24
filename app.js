@@ -16,6 +16,7 @@ require('dotenv').config();
 
 // VARIABLES
 const EXPRESS_SESSION_SECRET = process.env.EXPRESS_SESSION_SECRET;
+const EXPRESS_LISTENING_PORT = process.env.EXPRESS_LISTENING_PORT;
 const app = express();
 
 // MIDDLEWARE
@@ -36,7 +37,7 @@ app.use('/', addCustomerRoutes);
 app.use('/', appointmentsRoutes);
 
 // Start the server
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
+app.listen(EXPRESS_LISTENING_PORT, '0.0.0.0', () => {
+    console.log(`Server is running on port ${EXPRESS_LISTENING_PORT}`);
 });
 
