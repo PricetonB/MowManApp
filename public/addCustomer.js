@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.message === 'Customer added successfully') {
                 alert('Customer added successfully');
                 // Redirect to /userHub after successful addition
-                window.location.href = '/customers'; // Redirect to userHub page
+                window.location.href = '/customersHTML'; // Redirect to userHub page
             } else {
                 throw new Error(data.message);
             }

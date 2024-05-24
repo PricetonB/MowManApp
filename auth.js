@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { User, Profile, Customer } = require('./database');
+const { User, Profile } = require('./database');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
@@ -24,11 +24,16 @@ function(request, accessToken, refreshToken, profile, done) {
   const { id, displayName, emails } = profile;
   const profile_id = new mongoose.Types.ObjectId();
 
+  // Check if the user already exists
   User.findOne({ google_id: id })
     .then(user => {
+
+      // If the user exists, return the user
       if (user) {
         console.log('User already exists');
         return done(null, user);
+
+      // If the user does not exist, create a new user
       } else {
         console.log('User does not exist, creating a new one');
         const newUser = new User({

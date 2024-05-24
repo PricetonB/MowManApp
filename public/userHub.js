@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Make API request using Fetch API
-        fetch(`${baseURL}/userTest`, {
+        fetch(`${baseURL}/userData`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

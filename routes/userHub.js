@@ -12,28 +12,21 @@ function isLoggedIn(req, res, next) {
     }
 }
 
-
+// GET route to serve the customers HTML file
 router.get('/userHub', isLoggedIn, (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'userHub.html'));
 });
 
-/*
-// User home page after login
-router.get('/userHub', isLoggedIn, (req, res) => {
-    res.send(`    
-    <h1>Welcome to the profile page</h1>
-    <a href="/logout">Logout</a>`);
-});
-*/
 
-// Test POST request
+
+// POST route to add a new customer
 router.post('/user', isLoggedIn, (req, res) => {
     res.send('Post request successful');
     console.log(req.body); // Log the request body to the console
 });
 
-// Test GET request
-router.get('/userTest', isLoggedIn, (req, res) => {
+// GET route to serve the user data
+router.get('/userData', isLoggedIn, (req, res) => {
     Profile.findOne({ user_id: req.user.profile_id })
         .then(profile => {
             const responseData = profile;

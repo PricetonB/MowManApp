@@ -1,10 +1,4 @@
-
 /*
-
-route.get /userHub/addCustomer - returns html file that has form to add customer
-route.post /userHub/addCustomer - adds customer to database
-
-*/
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -23,7 +17,7 @@ function isLoggedIn(req, res, next) {
 }
 
 // GET route to serve the add customer HTML file
-router.get('/addCustomer', isLoggedIn, (req, res) => {
+router.get('/addCustomerHTML', isLoggedIn, (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'addCustomer.html'));
 });
 
@@ -56,3 +50,4 @@ router.post('/addCustomer', isLoggedIn, async (req, res) => {
 });
 
 module.exports = router;
+*/

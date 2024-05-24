@@ -8,7 +8,7 @@ const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/userHub');
 const customersRoutes = require('./routes/customers');
-const addCustomerRoutes = require('./routes/addCustomer');
+
 const appointmentsRoutes = require('./routes/appointments');
 const { User, Profile, Customer, Appointment, Setting } = require('./database');
 const cron = require('./services/taskScheduler');
@@ -33,7 +33,6 @@ app.use('/', indexRoutes);
 app.use('/', authRoutes);
 app.use('/', userRoutes);
 app.use('/', customersRoutes);
-app.use('/', addCustomerRoutes);
 app.use('/', appointmentsRoutes);
 
 // Start the server
