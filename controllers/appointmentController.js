@@ -37,15 +37,12 @@ const createAppointment = async (req, res, next) => {
 
 const finishAppointment = async (req, res, next) => {
     const { appointmentID } = req.body;
-    console.log(`appointmentID in server controller: ${appointmentID}`);
-    console.log('req.body:');
     console.dir(req.body); // Log the request body in more detail
 
     try {
         await appointmentService.setAppointmentInactive(appointmentID);
         await emailService.sendEmailNotification(appointmentID);
         res.json({ success: true });
-        console.log(`sending res status 200`);
     } catch (error) {
         next(error);
     }
@@ -65,7 +62,6 @@ const getUsersAppointments = async (req, res, next) => {
 
 const deleteAppointment = async (req, res, next) => {
     const { id } = req.params;
-    console.log(`Deleting appointment with ID: ${id}`);
 
     try {
         await appointmentService.deleteAppointment(id);
