@@ -1,11 +1,13 @@
+const baseURL = 'http://localhost:3000';
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Function to make API request and update HTML
     function makeAPIRequestAndUpdateHTML() {
-        // Example API endpoint
-        const apiUrl = 'http://localhost:3000/userTest';
+
 
         // Make API request using Fetch API
-        fetch(apiUrl, {
+        fetch(`${baseURL}/userTest`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

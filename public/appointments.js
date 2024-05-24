@@ -1,9 +1,9 @@
 
-
+const baseURL = 'http://localhost:3000';
 
 document.addEventListener('DOMContentLoaded', function () {
     function fetchAppointments() {
-        fetch('http://localhost:3000/appointmentsData', {
+        fetch(`${baseURL}/appointmentsData`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ window.finishAppointment = function(button) {
     console.log(`appointmentId in client finished: ${appointmentId}`);
 
     // Make the fetch request to mark the appointment as complete
-    fetch('http://localhost:3000/appointmentComplete', {
+    fetch(`${baseURL}/appointmentComplete`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -146,7 +146,7 @@ window.deleteAppointment = function(button) {
     const listItem = button.closest('li'); // Find the closest ancestor <li> element
     const appointmentId = listItem.getAttribute('data-appointment-id');
     console.log(`appointmentId in client for deletion: ${appointmentId}`);
-    fetch(`http://localhost:3000/appointment/${appointmentId}`, {
+    fetch(`${baseURL}/appointment/${appointmentId}`, {
         method: 'DELETE'
     })
         .then(response => {

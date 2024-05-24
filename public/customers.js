@@ -1,6 +1,9 @@
+
+const baseURL = 'http://localhost:3000';
+
 document.addEventListener('DOMContentLoaded', function () {
     function fetchCustomers() {
-        fetch('http://localhost:3000/customersData', {
+        fetch(`${baseURL}/customersData`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -14,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.customers && data.customers.length > 0) {
                 data.customers.forEach(customer => {
                     const listItem = document.createElement('li');
-                    listItem.textContent = `Name: ${customer.name}_____Email: ${customer.email}_____Phone: ${customer.phone}`;
+                    listItem.textContent = `Name: ${customer.name}_____ Email: ${customer.email} _____Phone: ${customer.phone}`;
                     customerList.appendChild(listItem);
                 });
             } else {

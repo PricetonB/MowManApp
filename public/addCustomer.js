@@ -1,3 +1,6 @@
+const baseURL = 'http://localhost:3000';
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('add-customer-btn');
 
@@ -12,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             phone
         };
 
-        fetch('http://localhost:3000/addCustomer', {
+        fetch(`${baseURL}/addCustomer`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

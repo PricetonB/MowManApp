@@ -1,3 +1,6 @@
+
+const baseURL = 'http://localhost:3000';
+
 document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('add-appointment-btn');
     const customerSelect = document.getElementById('customer-select');
@@ -8,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fetch and populate customer data
     function fetchCustomers() {
-        fetch('http://localhost:3000/customersData', {
+        fetch(`${baseURL}/customersData`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -86,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //log appointmentData to the console
         console.log(`appointmentData customer id in schedule appointment addbutton event listener: ${appointmentData.customerId}`)
 
-        fetch('http://localhost:3000/addAppointment', {
+        fetch(`${baseURL}/addAppointment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
