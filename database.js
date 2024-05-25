@@ -1,11 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+require('dotenv').config();
+
+
+MONGO_URL = process.env.MONGO_URL;
 
 
 // Connect to MongoDB
 mongoose.connect(
-  "mongodb+srv://pricetonbraswell:8ZxWtId9Y5mQ10mY@mowmandb.ch05rsi.mongodb.net/Node-API?retryWrites=true&w=majority&appName=MowManDB",
+  MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true }
 ).then(() => {
     console.log("Connected to MongoDB MowManDB!");

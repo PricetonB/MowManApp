@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const { Profile, Customer, Setting, Appointment } = require('../database');
 
+
 // Set up the Nodemailer transport
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -12,6 +13,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+// Function to send email notifications to customers
 const sendEmailNotification = async (appointmentID) => {
     try {
         // Fetch the appointment document by appointmentID
@@ -62,8 +64,6 @@ const sendEmailNotification = async (appointmentID) => {
         console.error('Error sending email:', error);
     }
 };
-
-
 
 
 module.exports = {

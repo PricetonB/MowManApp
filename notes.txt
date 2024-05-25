@@ -1,7 +1,6 @@
 
 
 
-AWS DNS CALLBACK: http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com:80/google/callback
 AWS DNS URL:  http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com:80
 
 pm2 start app.js --watch 

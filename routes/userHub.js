@@ -17,8 +17,6 @@ router.get('/userHub', isLoggedIn, (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'userHub.html'));
 });
 
-
-
 // POST route to add a new customer
 router.post('/user', isLoggedIn, (req, res) => {
     res.send('Post request successful');

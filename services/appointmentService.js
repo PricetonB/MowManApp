@@ -1,5 +1,7 @@
 const { Appointment, Profile } = require('../database');
 
+
+// addAppointment function to add a new appointment to the database
 const addAppointment = async (appointmentData) => {
     try {
         // Create a new appointment instance using the provided data
@@ -22,6 +24,7 @@ const addAppointment = async (appointmentData) => {
     }
 };
 
+// setAppointmentInactive function to set an appointment to inactive in the database
 const setAppointmentInactive = async (appointmentID) => {
     try {
         // Logic to set appointment to inactive in the database
@@ -32,6 +35,7 @@ const setAppointmentInactive = async (appointmentID) => {
     }
 };
 
+// deleteAppointment function to delete an appointment from the database
 const deleteAppointment = async (appointmentID) => {
     try {
         // Logic to delete the appointment from the database
@@ -48,6 +52,7 @@ const deleteAppointment = async (appointmentID) => {
     }
 };
 
+// getUsersAppointments function to fetch all appointments associated with a user's profile
 const getUsersAppointments = async (profileId) => {
     try {
         // Fetch appointments for the given profile ID

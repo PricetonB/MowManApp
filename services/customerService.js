@@ -1,7 +1,4 @@
-// services/customerService.js
 const { Profile, Customer } = require('../database');
-
-
 
 
 // Add a new customer to the database
@@ -25,9 +22,6 @@ const addCustomer = async (customerData, user) => {
     );
 };
 
-
-
-
 // Get all customers associated with the user's profile
 const getCustomersData = async (user) => {
     const profileId = user.profile_id; // Assuming `user.profile_id` is available
@@ -40,9 +34,6 @@ const getCustomersData = async (user) => {
     const customers = await Customer.find({ _id: { $in: profile.customers } });
     return customers;
 };
-
-
-
 
 // Delete a customer by ID
 const deleteCustomer = async (customerId) => {
