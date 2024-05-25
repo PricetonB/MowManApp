@@ -1,9 +1,12 @@
 # MowManApp
-push notification app for lawn care companys that lets you add customers and appointments. \n
-when the appointment is marked as complete an email will be sent to customer letting them know. \n
-uses google oauth to login and mongoDB to connect.  \n
-check out the site here http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com/userHub \n
-WARNING: website uses http and is not encrypted. Any private information entered could be exposed. \n
+push notification app for lawn care companys that lets you add customers and appointments. 
+
+when the appointment is marked as complete an email will be sent to customer letting them know. 
+
+uses google oauth to login and mongoDB to connect.  
+check out the site here http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com/userHub 
+
+WARNING: website example uses http and is not encrypted. Any private information entered could be exposed. 
 
 HOW TO USE:
 1. use git clone "https://github.com/PricetonB/MowManApp.git" to clone the code to your directory
