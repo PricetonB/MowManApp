@@ -3,7 +3,7 @@ push notification app for lawn care companys that lets you add customers and app
 
 when the appointment is marked as complete an email will be sent to customer letting them know. 
 
-uses google oauth to login and mongoDB to connect.  
+uses google oauth to login and mongoDB to handle data.  
 check out the site here http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com/userHub 
 
 WARNING: website example uses http and is not encrypted. Any private information entered could be exposed. 
