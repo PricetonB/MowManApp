@@ -1,6 +1,6 @@
 # MowManApp
 push notification app for lawn care companys. 
-uses google oauth to login and mongoDB to connect 
+uses google oauth to login and mongoDB to connect. 
 check out the site here http://ec2-3-144-135-34.us-east-2.compute.amazonaws.com/userHub
 WARNING: website uses http and is not encrypted. Any private information entered could be exposed.
 
