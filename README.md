@@ -17,7 +17,7 @@ GOOGLE_CLIENT_SECRET=""
 
 can be obtained from google cloud console in "apis" under "credentials" after creating account and setting u keys
 
-
+ 
 
 SMTP_HOST="smtp.gmail.com"
 SMTP_PORT="587"
