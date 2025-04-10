@@ -29,13 +29,13 @@ HOW TO USE:
  user will be your app email address and pass will be your App Password (Gmail account password will not work)
 
 
- EXPRESS_SESSION_SECRET="random characters"
+ EXPRESS_SESSION_SECRET=""
  EXPRESS_LISTENING_PORT=3000
  create a random string for express session secret and specify port you want to use
 
  MONGO_URL="mongodb+srv://username.randomletters"
- create a database on mongoDB Atlas website and get url for the database.
- You may also need to add your ip address to mongoDB Atlas whitelist.
+ Create a database on mongoDB Atlas website and get url for the database.
+You may also need to add your ip address to mongoDB Atlas whitelist.
 
 ```
 3. in the "auth.js" file set the baseUrl if your not using local host:3000.
