@@ -1,11 +1,12 @@
 # MowManApp
+
+You can view the site here http://www.mowmanapp.com/
+
 push notification app for lawn care companys that lets you add customers and appointments. 
 
 when the appointment is marked as complete an email will be sent to customer letting them know. 
 
 uses google oauth to login and mongoDB to handle data.  
-
-You can view the site here http://www.mowmanapp.com/
 
 WARNING: website example uses http and is not encrypted.  
 
