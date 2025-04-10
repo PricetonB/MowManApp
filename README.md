@@ -13,7 +13,7 @@ HOW TO USE:
 1. use git clone "https://github.com/PricetonB/MowManApp.git" to clone the code to your directory
 2. create .env file with the following parameters
 
- GOOGLE_CLIENT_ID=""
+ > GOOGLE_CLIENT_ID=""
  GOOGLE_CLIENT_SECRET=""
  can be obtained from google cloud console in "apis" under "credentials" after creating account and setting u keys
 
