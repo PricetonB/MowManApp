@@ -4,9 +4,10 @@ push notification app for lawn care companys that lets you add customers and app
 when the appointment is marked as complete an email will be sent to customer letting them know. 
 
 uses google oauth to login and mongoDB to handle data.  
-check out the site here http://www.mowmanapp.com/
 
-WARNING: website example uses http and is not encrypted. Any private information entered could be exposed. 
+You can view the site here http://www.mowmanapp.com/
+
+WARNING: website example uses http and is not encrypted.  
 
 HOW TO USE:
 1. use git clone "https://github.com/PricetonB/MowManApp.git" to clone the code to your directory
