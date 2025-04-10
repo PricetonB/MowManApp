@@ -11,9 +11,9 @@ WARNING: website example uses http and is not encrypted.
 
 HOW TO USE:
 1. use git clone "https://github.com/PricetonB/MowManApp.git" to clone the code to your directory
-2. create .env file with the following parameters
+```2. create .env file with the following parameters
 
- > GOOGLE_CLIENT_ID=""
+ GOOGLE_CLIENT_ID=""
  GOOGLE_CLIENT_SECRET=""
  can be obtained from google cloud console in "apis" under "credentials" after creating account and setting u keys
 
@@ -37,7 +37,7 @@ HOW TO USE:
  create a database on mongoDB Atlas website and get url for the database.
  You may also need to add your ip address to mongoDB Atlas whitelist.
 
-
+```
 3. in the "auth.js" file set the baseUrl if your not using local host:3000.
 
 4. in the "public" directory set the baseUrl at the top of every .js file if your not using localhost:3000
