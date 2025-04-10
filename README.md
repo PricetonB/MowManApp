@@ -13,29 +13,29 @@ HOW TO USE:
 1. use git clone "https://github.com/PricetonB/MowManApp.git" to clone the code to your directory
 2. create .env file with the following parameters
 
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
-can be obtained from google cloud console in "apis" under "credentials" after creating account and setting u keys
+ GOOGLE_CLIENT_ID=""
+ GOOGLE_CLIENT_SECRET=""
+ can be obtained from google cloud console in "apis" under "credentials" after creating account and setting u keys
 
  
-SMTP_HOST="smtp.gmail.com"
-SMTP_PORT="587"
-these are default credentials for gmail
+ SMTP_HOST="smtp.gmail.com"
+ SMTP_PORT="587"
+ these are default credentials for gmail
 
-SMTP_USER=""
-SMTP_PASS=""
-you need to create a gmail account for your app.
-Enable two factor authentication and create "App Password" in settings.
-user will be your app email address and pass will be your App Password (Gmail account password will not work)
+ SMTP_USER=""
+ SMTP_PASS=""
+ you need to create a gmail account for your app.
+ Enable two factor authentication and create "App Password" in settings.
+ user will be your app email address and pass will be your App Password (Gmail account password will not work)
 
 
-EXPRESS_SESSION_SECRET="random characters"
-EXPRESS_LISTENING_PORT=3000
-create a random string for express session secret and specify port you want to use
+ EXPRESS_SESSION_SECRET="random characters"
+ EXPRESS_LISTENING_PORT=3000
+ create a random string for express session secret and specify port you want to use
 
-MONGO_URL="mongodb+srv://username.randomletters"
-create a database on mongoDB Atlas website and get url for the database.
-You may also need to add your ip address to mongoDB Atlas whitelist.
+ MONGO_URL="mongodb+srv://username.randomletters"
+ create a database on mongoDB Atlas website and get url for the database.
+ You may also need to add your ip address to mongoDB Atlas whitelist.
 
 
 3. in the "auth.js" file set the baseUrl if your not using local host:3000.
